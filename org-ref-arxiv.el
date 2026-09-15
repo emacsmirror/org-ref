@@ -48,21 +48,21 @@
 ;; example: arxiv:cond-mat/0410285
 (org-link-set-parameters "arxiv"
 			 :follow (lambda (link-string)
-				   (browse-url (format "http://arxiv.org/abs/%s" link-string)))
+				   (browse-url (format "https://arxiv.org/abs/%s" link-string)))
 			 :export (lambda (keyword desc format)
 				   (cond
 				    ((eq format 'html)
-				     (format  "<a href=\"http://arxiv.org/abs/%s\">arxiv:%s</a>"
+				     (format  "<a href=\"https://arxiv.org/abs/%s\">arxiv:%s</a>"
 					      keyword  (or desc keyword)))
 				    ((eq format 'latex)
 				     ;; write out the latex command
-				     (format "\\url{http://arxiv.org/abs/%s}{%s}" keyword (or desc keyword))))))
+				     (format "\\url{https://arxiv.org/abs/%s}{%s}" keyword (or desc keyword))))))
 
 ;;* Getting a bibtex entry for an arXiv article using remote service:
 ;; For an arxiv article, there is a link to a NASA ADS page like this:
-;; http://adsabs.harvard.edu/cgi-bin/bib_query?arXiv:1503.01742
+;; https://adsabs.harvard.edu/cgi-bin/bib_query?arXiv:1503.01742
 ;; On that page, there is a link to a bibtex entry:
-;; http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2015arXiv150301742H&data_type=BIBTEX&db_key=PRE&nocookieset=1
+;; https://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2015arXiv150301742H&data_type=BIBTEX&db_key=PRE&nocookieset=1
 ;;
 ;; It looks like you need to get a Bibliographic code from the arxiv number to
 ;; then get the bibtex entry.
@@ -72,9 +72,9 @@
   (with-current-buffer
       (url-retrieve-synchronously
        (concat
-        "http://adsabs.harvard.edu/cgi-bin/bib_query?arXiv:"
+        "https://adsabs.harvard.edu/cgi-bin/bib_query?arXiv:"
         arxiv-number))
-    (search-forward-regexp "<link rel=\"canonical\" href=\"http://ui.adsabs.harvard.edu/abs/\\(.*\\)/abstract\"/>")
+    (search-forward-regexp "<link rel=\"canonical\" href=\"https://ui.adsabs.harvard.edu/abs/\\(.*\\)/abstract\"/>")
     (match-string 1)))
 
 
