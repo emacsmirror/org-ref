@@ -112,7 +112,7 @@
   "Retrieve meta data for ARXIV-NUMBER.
 Returns a formatted BibTeX entry."
   (with-current-buffer
-      (url-retrieve-synchronously (format "http://export.arxiv.org/api/query?id_list=%s" arxiv-number) t)
+      (url-retrieve-synchronously (format "https://export.arxiv.org/api/query?id_list=%s" arxiv-number) t)
     (let* ((parse-tree (libxml-parse-xml-region
                         (progn (goto-char 0)
                                (search-forward "<?xml ")
